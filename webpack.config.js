@@ -1,9 +1,35 @@
+const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+require('dotenv').config();
 
 module.exports = {
-  entry: './index.js',
+  context: path.join(__dirname, 'src'),
+  entry: ['whatwg-fetch', './index.js'],
   output: {
-    path: __dirname,
-    filename: './bundle.js'
-  }
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpeg)$/,
+        loader: 'file-loader'
+      }
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: 'body',
+    }),
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(process.env.API_URL)
+    })
+  ]
 };
