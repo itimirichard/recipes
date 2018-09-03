@@ -1,24 +1,40 @@
 import React from 'react';
 
-const RecipeDetail = (props) => (
-  <div style={props.style}>
-    <h2>Creepy Halloween Skull Cupcakes</h2>
-    <img src={''} />
-    <div>
-      <span>Dessert</span>
-      <span>1200 cal</span>
+const RecipeDetail = (props) => {
+  if (!props.recipe) {
+    return (
+      <p style={props.style}>
+        Please select a recipe to see the detail
+      </p>
+    );
+  }
+
+  return (
+    <div style={props.style}>
+      <h2>{props.recipe.name}</h2>
+      <img src={props.recipe.image} />
+      <div>
+        <span>{props.recipe.category}</span>
+        <span>{props.recipe.calories}</span>
+      </div>
+      <h3>Ingredients</h3>
+      <ul>
+        {props.recipe.ingredients.map(ingredient => (
+          <li key={ingredient}>
+            {ingredient}
+          </li>
+        ))}
+      </ul>
+      <h3>Steps</h3>
+      <ol>
+        {props.recipe.steps.map(step => (
+          <li key={step}>
+            {step}
+          </li>
+        ))}
+      </ol>
     </div>
-    <h3>Ingredients</h3>
-    <ul>
-      <li>1 package devil's food cake mix</li>
-      <li>1 Cup of water</li>
-      <li>3 eggs</li>
-    </ul>
-    <h3>Steps</h3>
-    <ol>
-      <li></li>
-    </ol>
-  </div>
-);
+  )
+}
 
 export default RecipeDetail
