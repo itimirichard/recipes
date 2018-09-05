@@ -8,45 +8,55 @@ class App extends Component {
     super(props);
 
     this.state = {
+      loading: true,
       recipes: [],
       currentRecipe: null,
-    }
+    };
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/v1/recipes`)
-    .then(res => res.json())
-    .then(recipes => {
-      this.setState({ recipes });
-    });
+    this.getData();
   }
 
   onRecipeClick = (recipeId) => {
     fetch(`${API_URL}/v1/recipes/${recipeId}`)
-    .then(res => res.json())
-    .then(recipe => {
-      this.setState({ currentRecipe: recipe });
-    });
+      .then(res => res.json())
+      .then((recipe) => {
+        this.setState({ currentRecipe: recipe });
+      });
+  }
+
+  getData = () => {
+    fetch(`${API_URL}/v1/recipes`)
+      .then(res => res.json())
+      .then((recipes) => {
+        this.setState({
+          recipes,
+          loading: false,
+        });
+      });
   }
 
   render() {
-    const { recipes, currentRecipe } = this.state;
+    const { recipes, currentRecipe, loading } = this.state;
     return (
       <div>
         <Header />
-        <main style={{ display: 'flex' }}>
-          <RecipeList 
-            recipes={recipes} 
+        <main className="px4 flex">
+          <RecipeList
+            recipes={recipes}
             style={{ flex: 3 }}
             onClick={this.onRecipeClick}
+            loading={loading}
           />
-          <RecipeDetail 
+          <RecipeDetail
             style={{ flex: 5 }}
+            className="ml4"
             recipe={currentRecipe}
           />
         </main>
       </div>
-    )
+    );
   }
 }
 
