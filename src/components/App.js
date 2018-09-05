@@ -18,24 +18,24 @@ class App extends Component {
     this.getData();
   }
 
-  onRecipeClick = (recipeId) => {
+  onRecipeClick = recipeId => {
     fetch(`${API_URL}/v1/recipes/${recipeId}`)
       .then(res => res.json())
-      .then((recipe) => {
+      .then(recipe => {
         this.setState({ currentRecipe: recipe });
       });
-  }
+  };
 
   getData = () => {
     fetch(`${API_URL}/v1/recipes`)
       .then(res => res.json())
-      .then((recipes) => {
+      .then(recipes => {
         this.setState({
           recipes,
           loading: false,
         });
       });
-  }
+  };
 
   render() {
     const { recipes, currentRecipe, loading } = this.state;

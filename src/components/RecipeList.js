@@ -2,7 +2,7 @@ import React from 'react';
 import { List, Skeleton } from 'antd';
 import PropTypes from 'prop-types';
 
-const RecipeList = (props) => {
+const RecipeList = props => {
   if (props.loading) {
     return (
       <div style={props.style}>
@@ -42,7 +42,6 @@ RecipeList.propTypes = {
   recipes: PropTypes.object,
   loading: PropTypes.bool,
   onClick: PropTypes.func,
-
 };
 
 export default RecipeList;

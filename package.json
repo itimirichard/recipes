@@ -7,6 +7,7 @@
     "start": "webpack-dev-server",
     "webpack": "webpack",
     "lint": "eslint ./src",
+    "precommit": "Echo 'Test'",
     "build": "babel ./index.js -o bundle.js"
   },
   "devDependencies": {
@@ -29,10 +30,12 @@
     "eslint-plugin-react": "^7.4.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
     "postcss": "^7.0.2",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.0",
     "postcss-loader": "^3.0.0",
+    "prettier": "^1.14.2",
     "style-loader": "^0.23.0",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
@@ -40,6 +43,7 @@
   "dependencies": {
     "antd": "^3.9.1",
     "classnames": "^2.2.6",
+    "eslint-config-prettier": "^3.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
