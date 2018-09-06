@@ -39,7 +39,7 @@ const RecipeList = props => {
 
 RecipeList.propTypes = {
   style: PropTypes.object,
-  recipes: PropTypes.object,
+  recipes: PropTypes.array,
   loading: PropTypes.bool,
   onClick: PropTypes.func,
 };
