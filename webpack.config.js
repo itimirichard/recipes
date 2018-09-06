@@ -9,24 +9,27 @@ module.exports = {
   entry: ['whatwg-fetch', './index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.css/,
-        loader: ['style-loader', 'css-loader', 'postcss-loader']
+        loader: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|jpeg)$/,
-        loader: 'file-loader'
-      }
+        loader: 'file-loader',
+      },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -34,7 +37,7 @@ module.exports = {
       inject: 'body',
     }),
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(process.env.API_URL)
-    })
-  ]
+      API_URL: JSON.stringify(process.env.API_URL),
+    }),
+  ],
 };
